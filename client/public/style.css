@@ -1,0 +1,9 @@
+html {
+   scroll-behavior: smooth;
+}
+body {
+   font-family: Cambria, Georgia, serif;
+   font-size: 14px;
+   color: #fff;
+   background-color: #000;
+}
