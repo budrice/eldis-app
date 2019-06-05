@@ -27,7 +27,12 @@ export default class Welcome extends Component {
             <Container id="welcome">
                <Row className="justify-content-md-center">
                   <Col xs className="column">
-                     <Image src={name} style={image_styles} fluid={true} />
+                     <Row className="justify-content-md-center">
+                        <Col xs md={8}>
+                           <Image src={name} style={image_styles} fluid={true} />
+                        </Col>
+                     </Row>
+                     
                      <Carousel controls={false} fade={true} indicators={false} pauseOnHover={false} interval={3500}>
                         
                         <Carousel.Item className="w-100">
