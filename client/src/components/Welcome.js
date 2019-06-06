@@ -4,6 +4,8 @@ import Carousel from 'react-bootstrap/Carousel';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 import Header from './Header';
 import './Welcome.css';
@@ -11,6 +13,7 @@ import name from '../images/name2.png';
 import mern from '../images/mern-stack.png';
 import otech from '../images/other-tech.png';
 import dbeez from '../images/dbeez1.png';
+import ubuntu from '../images/ubuntu_logo.png';
 import lms from '../images/lms.png';
 import imt from '../images/imt.png';
 import iaut from '../images/iaut.png';
@@ -19,7 +22,7 @@ import blank from '../images/blank.png';
 import stats from '../images/graph.jpg';
 import react_cert from '../images/react-redux_cert.jpg';
 
-export default class Welcome extends Component {
+class Welcome extends Component {
    render() {
       return (
          <div>
@@ -48,9 +51,7 @@ export default class Welcome extends Component {
                               src={imt}
                               alt="I made this..."
                            />
-                           <Carousel.Caption>
-                              <h3>... I used the MERN stack.</h3>
-                           </Carousel.Caption>
+                           <Carousel.Caption></Carousel.Caption>
                         </Carousel.Item>
 
                         <Carousel.Item className="w-100">
@@ -60,6 +61,7 @@ export default class Welcome extends Component {
                            />
                            <Carousel.Caption>
                               <h3>MongoDB,&nbsp;&nbsp;&nbsp;&nbsp;Express,&nbsp;&nbsp;&nbsp;&nbsp;ReactJS,&nbsp;&nbsp;&nbsp;&nbsp;NodeJS</h3>
+                              <h3>... I used the MERN stack.</h3>
                            </Carousel.Caption>
                         </Carousel.Item>
 
@@ -76,7 +78,6 @@ export default class Welcome extends Component {
                               src={otech}
                               alt="Clientside technologies"
                            />
-
                            <Carousel.Caption>
                               <h3>AngularJS,&nbsp;&nbsp;&nbsp;JavaScript,&nbsp;&nbsp;&nbsp;Bootstrap,&nbsp;&nbsp;&nbsp;Jquery</h3>
                            </Carousel.Caption>
@@ -95,9 +96,18 @@ export default class Welcome extends Component {
                               src={dbeez}
                               alt="Database technologies"
                            />
-
                            <Carousel.Caption>
                               <h3>&nbsp;&nbsp;&nbsp;&nbsp;MySQL,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MongoDB</h3>
+                           </Carousel.Caption>
+                        </Carousel.Item>
+
+                        <Carousel.Item className="w-100">
+                           <img
+                              src={ubuntu}
+                              alt="Database technologies"
+                           />
+                           <Carousel.Caption>
+                              <h3>I work with Ubuntu 16.04.5 x64 with "Let's Encrypt"</h3>
                            </Carousel.Caption>
                         </Carousel.Item>
                         
@@ -114,9 +124,8 @@ export default class Welcome extends Component {
                               src={lms}
                               alt="Let's make something..."
                            />
-
                            <Carousel.Caption>
-                              <h3>... make a difference.</h3>
+                              <h1>... make a difference.</h1>
                            </Carousel.Caption>
                         </Carousel.Item>
                         
@@ -157,7 +166,7 @@ export default class Welcome extends Component {
                               <li>React Native: Advanced Concepts</li>
                            </ul>
                         </Col>
-                        <Col xs md={5}>
+                        <Col xs md={4}>
                            <Image src={react_cert} style={image_styles} fluid={true} />
                         </Col>
                      
@@ -173,57 +182,67 @@ export default class Welcome extends Component {
                   </Col>
                </Row>
             </Container>
+
             <Container id="work">
                <Row className="justify-content-md-center">
                   <Col xs className="column">
-                     <h2 style={head_font}>Process Management Systems:</h2>
-                     <p style={work_style}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business process management (BPM) is a discipline involving any combination of modeling, automation, execution, control, measurement and optimization of business activity flows, in support of enterprise goals, spanning systems, employees, customers and partners within and beyond the enterprise boundaries.</p>
-                     <h4 style={head_font}>2013 - 2018</h4>
-                     <p style={work_style}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VBA Access was the existing system when I came aboard. I was asked to learn Node JS, Angular JS and MySQL to build the new system. I also used Node JS to build web scrapers to retrieve data from clients web portals.</p>
-                     <ul style={work_style}>Technologies include:
-                        <li>Git - console repository control</li>
-                        <li>npm - console node package manager</li>
-                        <li>Angular JS</li>
-                        <li>Node JS</li>
-                        <li>VBA/Access/Excel</li>
-                        <li>HTML5, XHTML</li>
-                        <li>CSS3, SCSS</li>
-                        <li>Bootstrap 3 and 4</li>
-                        <li>Javascript/ES6</li>
-                        <li>TamperMonkey</li>
-                        <li>Knockout JS</li>
-                        <li>Ajax</li>
-                        <li>C# - Console; Access API's; Excel Spreadsheets/Pivot Tables</li>
-                        <li>MySQL</li>
-                        <li>Linux Ubuntu</li>
-                     </ul>
-                     <p style={work_style}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Angular JS, Node JS and MySQL was 75% of the work I did writing this system, mainly due to the amount of data collected to complete an order. It required many user interfaces so Bootstrap helped to style quickly. </p>
-
-                     <h4 style={head_font}>2004 - 2009</h4>
-                     <p style={work_style}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My first five years were spent writing process management interfaces for a recycling company. The system took as much data from mechanical devices, scales and barcodes. Data collected was stored in a MS SQL database.</p>
-                     <ul style={work_style}>Technologies include:
-                        <li>HTML4, XHTML</li>
-                        <li>CSS</li>
-                        <li>Javascript</li>
-                        <li>AutoIT</li>
-                        <li>C#/VB - Windows forms, Excel</li>
-                        <li>VBA/Access/Excel</li>
-                     </ul>
-                     <p style={work_style}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AutoIT was used to interface with scales through serial ports. It also made a mouse event script to insert an ebay item to sell using barcodes to trigger and provide the data ID.</p>
-
-                     <h2 style={head_font}>Web applications:</h2>
-                     <p style={work_style}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I built some web single page applications to help develope my skills. I needed the ability to showcase my abilities after working on business management softwares and not being able to share my work.</p>
-                     <h4>2018 - 2019</h4>
-                     <ul style={work_style}>
-                        <li>React JS</li>
-                        <li>Angular 7</li>
-                        <li>Node JS</li>
-                        <li>Mongo DB</li>
-                        <li>MySQL</li>
-                        <li>PhotoShop CC</li>
-
-                     </ul>
-
+                     <Row>
+                        <Col xs md={6}>
+                           <h2 style={head_font}>Process Management Systems:</h2>
+                           <p style={work_style}>
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business process management (BPM) is a discipline involving any combination of modeling, automation, execution, control, measurement and optimization of business activity flows, in support of enterprise goals, spanning systems, employees, customers and partners within and beyond the enterprise boundaries.
+                           </p>
+                        </Col>
+                        <Col xs md={3}>
+                           <ul style={work_style}>Technologies:
+                              <li>Git</li>
+                              <li>npm</li>
+                              <li>Angular JS</li>
+                              <li>Node JS</li>
+                              <li>VBA/Access/Excel</li>
+                              <li>HTML5, XHTML</li>
+                              <li>CSS3, SCSS</li>
+                              <li>Bootstrap 3 and 4</li>
+                           </ul>
+                        </Col>
+                        <Col xs md={3}>
+                        <ul style={work_style}>&nbsp;
+                              <li>Javascript/ES6</li>
+                              <li>TamperMonkey</li>
+                              <li>Knockout JS</li>
+                              <li>Ajax</li>
+                              <li>C#/VB</li>
+                              <li>MySQL</li>
+                              <li>Linux Ubuntu</li>
+                              <li>AutoIT</li>
+                           </ul>
+                        </Col>
+                     </Row>
+                     <Row>
+                        <Col xs>
+                           <h4 style={head_font}>2004 - 2009,&nbsp;&nbsp;&nbsp;2013 - 2018</h4>
+                           <p style={work_style}>
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The first BPM was for a recycling company's work flow. The system was a cobination of C# Windows forms and AutoIT scripts which took data from mechanical devices, scales and barcodes. Data collected was stored in a MS SQL database.
+                           </p>
+                           <p style={work_style}>
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;After College, the second BPM programming team used a MEAN stack, MySQL, Express, Angular JS, Node JS. This BPM was a single page web app that required authorization, sockets, locks, tables and forms
+                           </p>
+                           <p style={work_style}>
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Node JS was also used to create web scapers to collect orders from the clients that provided web portals to them. Console apps, API servers and Email scrapers were also built in Node JS.
+                           </p>
+                        </Col>
+                     </Row>
+                  </Col>
+               </Row>
+               
+            </Container>
+            
+            <Container id="examples">
+               <Row className="justify-content-md-center">
+                  <Col xs className="column">
+                     <Row>
+                        <Col xs><div dangerouslySetInnerHTML={{ __html: this.props.getRepos('eldis-app') }} /></Col>
+                     </Row>
                   </Col>
                </Row>
             </Container>
@@ -244,3 +263,5 @@ const work_style = {
 const head_font = {
    color: 'lime'
 };
+
+export default connect(null, actions)(Welcome);

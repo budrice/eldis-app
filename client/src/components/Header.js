@@ -37,7 +37,7 @@ class Header extends Component {
                   <Nav.Link href="#stats">Stats</Nav.Link>
                   <Nav.Link href="#school">School</Nav.Link>
                   <Nav.Link href="#work">Work</Nav.Link>
-                  <Nav.Link href="#fun">Fun</Nav.Link>
+                  <Nav.Link style={{ marginRight: '35px' }} href="#examples">Examples</Nav.Link>
                   <Nav.Link href="#contact">Contact</Nav.Link>
                </Nav>
                {this.renderLinks()}
