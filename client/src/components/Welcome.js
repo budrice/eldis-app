@@ -225,12 +225,12 @@ class Welcome extends Component {
             <Container id="stats">
                <Row className="justify-content-md-center">
                   <Col xs className="column">
-                     <Row className="justify-content-md-center" style={{ backgroundColor: 'rgba(255, 255, 255, .4)', borderTopLeftRadius: '13px', borderTopRightRadius: '13px', padding: '25px 0 15px' }}>
+                     <Row className="justify-content-md-center" style={ column_toprow }>
                         <Col xs md={7}>
                            <h2>Programming language experience by years</h2>
                         </Col>
                      </Row>
-                     <Row style={{ padding: '15px', backgroundColor: 'rgba(255, 255, 255, .95)', borderBottomLeftRadius: '13px', borderBottomRightRadius: '13px'}}>
+                     <Row style={ column_bottomrow }>
                         <HorizontalBar data={stats_graph_data} options={stats_graph_options} />
                      </Row>
                   </Col>
@@ -361,6 +361,20 @@ const work_style = {
 
 const head_font = {
    color: 'rgb(100, 255, 255)'
+};
+
+const column_toprow = {
+   backgroundColor: 'rgba(255, 255, 255, .4)',
+   borderTopLeftRadius: '13px',
+   borderTopRightRadius: '13px',
+   padding: '25px 0 15px'
+};
+
+const column_bottomrow = {
+   backgroundColor: 'rgba(255, 255, 255, 1)',
+   borderBottomLeftRadius: '13px',
+   borderBottomRightRadius: '13px',
+   padding: '25px 0 15px'
 };
 
 export default connect(null, actions)(Welcome);
