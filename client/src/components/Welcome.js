@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Carousel from 'react-bootstrap/Carousel';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
+import { HorizontalBar } from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import Iframe from 'react-iframe'
 
 import Header from './Header';
 import './Welcome.css';
@@ -19,14 +22,88 @@ import imt from '../images/imt.png';
 import iaut from '../images/iaut.png';
 import hi from '../images/hi.png';
 import blank from '../images/blank.png';
-import stats from '../images/graph.jpg';
+// import stats from '../images/graph.jpg';
 import react_cert from '../images/react-redux_cert.jpg';
 
+const stats_graph_data = {
+   labels: ['JavaScript', 'Node JS', 'React JS', 'Angular JS', 'Mongo DB', 'MySQL', 'MS SQL', 'C#/VB .net', 'AutoIT', 'VBA/Access'],
+   datasets: [{
+      label: 'years of experience',
+      data: [8.5, 6, .5, 4.5, 1.5, 8, 8.5, 10.5, 4.5, 4.5],
+      backgroundColor: [
+         'rgba(0, 150, 0, 0.2)',
+         'rgba(0, 150, 0, 0.2)',
+         'rgba(0, 150, 0, 0.2)',
+         'rgba(0, 150, 0, 0.2)',
+         'rgba(0, 150, 0, 0.2)',
+         'rgba(0, 150, 0, 0.2)',
+         'rgba(0, 150, 0, 0.2)',
+         'rgba(0, 150, 0, 0.2)',
+         'rgba(55, 55, 55, 0.2)',
+         'rgba(55, 55, 55, 0.2)'
+     ],
+     borderColor: [
+      'rgba(0, 150, 0, 1)',
+      'rgba(0, 150, 0, 1)',
+      'rgba(0, 150, 0, 1)',
+      'rgba(0, 150, 0, 1)',
+      'rgba(0, 150, 0, 1)',
+      'rgba(0, 150, 0, 1)',
+      'rgba(0, 150, 0, 1)',
+      'rgba(0, 150, 0, 1)',
+      'rgba(55, 55, 55, 1)',
+      'rgba(55, 55, 55, 1)'
+     ],
+     hoverBackgroundColor: [
+      'rgba(0, 150, 0, 1)',
+      'rgba(0, 150, 0, 1)',
+      'rgba(0, 150, 0, 1)',
+      'rgba(0, 150, 0, 1)',
+      'rgba(0, 150, 0, 1)',
+      'rgba(0, 150, 0, 1)',
+      'rgba(0, 150, 0, 1)',
+      'rgba(0, 150, 0, 1)',
+      'rgba(102, 102, 102, 1)',
+      'rgba(102, 102, 102, 1)'
+      ],
+      borderWidth: 1
+   }]
+};
+const stats_graph_options = {
+   legend: {
+      display: false
+   },
+   tooltips: {
+      enabled: false
+   },
+   scales: {
+      xAxes: [{
+          ticks: {
+              beginAtZero: true
+          }
+      }]
+  }
+};
+
 class Welcome extends Component {
+
+   constructor(props) {
+      super(props);
+      this.state = { iframe: '' };
+   }
+
+   componentDidMount() {
+      axios.get('https://mr-epoxy.com')
+      .then(result => {
+         this.setState({ iframe: result.data });
+      });
+   }
+
    render() {
       return (
          <div>
             <Header />
+
             <Container id="welcome">
                <Row className="justify-content-md-center">
                   <Col xs className="column">
@@ -107,7 +184,7 @@ class Welcome extends Component {
                               alt="Database technologies"
                            />
                            <Carousel.Caption>
-                              <h3>I work with Ubuntu 16.04.5 x64 with "Let's Encrypt"</h3>
+                              <h3>Ubuntu 16.04, 18.04, 18.10 x64</h3>
                            </Carousel.Caption>
                         </Carousel.Item>
                         
@@ -148,7 +225,14 @@ class Welcome extends Component {
             <Container id="stats">
                <Row className="justify-content-md-center">
                   <Col xs className="column">
-                     <Image src={stats} style={image_styles} fluid={true} />
+                     <Row className="justify-content-md-center" style={{ backgroundColor: 'rgba(255, 255, 255, .4)', borderTopLeftRadius: '13px', borderTopRightRadius: '13px', padding: '25px 0 15px' }}>
+                        <Col xs md={7}>
+                           <h2>Programming language experience by years</h2>
+                        </Col>
+                     </Row>
+                     <Row style={{ padding: '15px', backgroundColor: 'rgba(255, 255, 255, .95)', borderBottomLeftRadius: '13px', borderBottomRightRadius: '13px'}}>
+                        <HorizontalBar data={stats_graph_data} options={stats_graph_options} />
+                     </Row>
                   </Col>
                </Row>
             </Container>
@@ -166,7 +250,7 @@ class Welcome extends Component {
                               <li>React Native: Advanced Concepts</li>
                            </ul>
                         </Col>
-                        <Col xs md={4}>
+                        <Col xs md={5}>
                            <Image src={react_cert} style={image_styles} fluid={true} />
                         </Col>
                      
@@ -175,7 +259,7 @@ class Welcome extends Component {
                         <Col xs>
                            <h2 style={head_font}>Kaplan University</h2>
                            <p style={work_style}>Information Systems</p>
-                           <h4 style={head_font}>2009 - 2013</h4>
+                           <h4 style={work_style}>2009 - 2013</h4>
                            <p style={work_style}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I went to college between working at my first programming job and the second. This focused a lot on networks but did give me C#, VB, Java, MS Sql, HTML5, project management and human relations courses. Oh and a very large bill. :)</p>
                         </Col>
                      </Row>
@@ -240,8 +324,23 @@ class Welcome extends Component {
             <Container id="examples">
                <Row className="justify-content-md-center">
                   <Col xs className="column">
-                     <Row>
-                        <Col xs><div dangerouslySetInnerHTML={{ __html: this.props.getRepos('eldis-app') }} /></Col>
+                     {console.log(this.state.iframe)}
+                     <Iframe  src={this.state.iframe}
+                              width="100%"
+                              height="450px"
+                              id="myId"
+                              className="myClassname"
+                              display="initial"
+                              position="relative" />
+                  </Col>
+               </Row>
+            </Container>
+            
+            <Container id="contact">
+               <Row className="justify-content-md-center">
+                  <Col xs className="column">
+                     <Row className="justify-content-md-center">
+                        <Col xs={1}>contact</Col>
                      </Row>
                   </Col>
                </Row>
@@ -261,7 +360,7 @@ const work_style = {
 };
 
 const head_font = {
-   color: 'lime'
+   color: 'rgb(100, 255, 255)'
 };
 
 export default connect(null, actions)(Welcome);

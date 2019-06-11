@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import bg from '../images/bg2.jpg';
 
-export default ({ children }) => {
-  return (
-    <Container style={styles} fluid={true}>
-      {children}
-    </Container>
-  );
+export default class App extends Component {
+   render() {
+      return (
+         <Container style={styles} fluid={true}>
+            {this.props.children}
+         </Container>
+      );
+   }
+
 };
 
 const styles = {

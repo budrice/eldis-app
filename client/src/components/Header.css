@@ -1,5 +1,5 @@
 .navbar-black {
-  background-color: rgba(0, 0, 0, .8);  
+  background-color: rgba(122, 122, 122, .8);  
 }
  .navbar-black .btn {
    margin-right: 6px;
@@ -9,6 +9,7 @@
  .nav-link,
 .navbar-brand {
    font-size: 1.5em;
+   font-weight: 300;
    color: rgb(255, 255, 255);
    min-width: 110px;
 }
