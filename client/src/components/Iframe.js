@@ -1,21 +1,18 @@
-import React from 'react';
-import Col from 'react-bootstrap/Col';
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
-const Iframe = ({ source }) => {
+class Iframe extends Component {
 
-    if (!source) {
-        return <div>Loading...</div>;
-    }
+   componentDidMount() {
+      ReactDOM.findDOMNode(this).addEventListener('load', this.props.onLoad);
+   }
 
-    const src = source;     
-    return (
-        // basic bootstrap classes. you can change with yours.
-        <Col md={12}>
-            <div>
-                <iframe src={src} title="github_budrice" crossorigin />
-            </div>
-        </Col>
-    );
-};
+   render() {
+      return (
+         <iframe title="iframe" ref="iframe" {...this.props}/>
+      );
+   }
+
+}
 
 export default Iframe;
